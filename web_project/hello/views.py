@@ -3,8 +3,27 @@ import re
 from django.http import HttpResponse
 from django.utils.timezone import datetime
 
+def hello_there(request, name):
+    return render(
+        request,
+        'hello/hello_there.html',
+        {
+            'name': name,
+            'date': datetime.now(),
+         }
+    )
+
 def home(request):
-    return HttpResponse("Hello, Django")
+    return render(request, "hello/home.html")
+
+def about(request):
+    return render(request, "hello/about.html")
+
+def contact(request):
+    return render(request, "hello/contact.html")
+
+'''def home(request):
+    return HttpResponse("Hello, Django")'''
 
 '''def hello_there(request, name):
     
@@ -19,13 +38,3 @@ def home(request):
        clean_name = "Friend"
     content = "Hello there, " + clean_name + "! It's " + formatted_now
     return HttpResponse(content)'''
-
-def hello_there(request, name):
-    return render(
-        request,
-        'hello/hello_there.html',
-        {
-            'name': name,
-            'date': datetime.now(),
-         }
-    )
